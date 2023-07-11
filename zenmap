@@ -1,0 +1,20 @@
+import subprocess
+
+def run_nmap(target):
+    try:
+        # Run Nmap command
+        result = subprocess.run(['nmap', target], capture_output=True, text=True)
+        
+        # Check if the command was successful
+        if result.returncode == 0:
+            # Print the output
+            print(result.stdout)
+        else:
+            # Print the error message
+            print(result.stderr)
+    except FileNotFoundError:
+        print("Nmap command not found. Please make sure Nmap is installed and available in the system's PATH.")
+
+# Run Nmap on a target IP or hostname
+target = '127.0.0.1'
+run_nmap(target)
